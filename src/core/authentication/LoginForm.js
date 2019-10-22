@@ -63,13 +63,13 @@ class LoginForm extends Component {
                 <FormGroup>
                     <Label for="email">Email</Label>
                     <Input type="email" name="username" id="email" placeholder="votre mail"
-                        onChange={this.onChange} />
+                        onChange={this.onChange} value={this.state.user.username} />
                     <TextError message={this.state.errors.errorUsername} />
                 </FormGroup>
                 <FormGroup>
                     <Label for="password">Mot de passe</Label>
                     <Input type="password" name="password" id="password" placeholder="votre mot de passe"
-                        onChange={this.onChange} />
+                        onChange={this.onChange} value={this.state.user.password} />
                     <TextError message={this.state.errors.errorPassword} />
                 </FormGroup>
                 <Button>Se connecter</Button>

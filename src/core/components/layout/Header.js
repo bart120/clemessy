@@ -5,17 +5,20 @@ import {
     Collapse,
     Navbar,
     NavbarToggler,
-    NavbarBrand,
+    Button,
     Nav,
     NavLink,
-    NavItem,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem
+    NavItem
 } from 'reactstrap';
+import { connect } from 'react-redux';
+import { logout } from '../../../redux/actions/authentication-actions';
+import { bindActionCreators } from 'redux';
 
 class Header extends React.Component {
+
+    onLogout = () => {
+        this.props.actions.actionLogout();
+    }
 
     render() {
         return (
@@ -27,31 +30,35 @@ class Header extends React.Component {
                         <NavItem>
                             <MyNavLink to='/variabletypes/list'>Types de variable</MyNavLink>
                         </NavItem>
-                        <NavItem>
-                            <MyNavLink to="/login">Se connecter</MyNavLink>
-                        </NavItem>
-                        <UncontrolledDropdown nav inNavbar>
-                            <DropdownToggle nav caret>
-                                Options
-                  </DropdownToggle>
-                            <DropdownMenu right>
-                                <DropdownItem>
-                                    Option 1
-                    </DropdownItem>
-                                <DropdownItem>
-                                    Option 2
-                    </DropdownItem>
-                                <DropdownItem divider />
-                                <DropdownItem>
-                                    Reset
-                    </DropdownItem>
-                            </DropdownMenu>
-                        </UncontrolledDropdown>
+                        {this.props.isConnected ? (
+                            <>
+                                <NavItem>
+                                    <NavLink>Bonjour {this.props.user.name}</NavLink>
+                                </NavItem><NavItem>
+                                    <Button onClick={this.onLogout}>Se déconnecter</Button>
+                                </NavItem>
+                            </>
+                        ) : (
+                                <NavItem>
+                                    <MyNavLink to="/login">Se connecter</MyNavLink>
+                                </NavItem>)}
+
                     </Nav>
-                </Collapse>
-            </Navbar>
+                </Collapse >
+            </Navbar >
         );
     }
 }
 
-export default Header;
+const mapStateToProps = (stateStore) => ({
+    isConnected: stateStore.isConnected,
+    user: stateStore.user
+});
+
+const mapActionsToProps = (payload) => ({
+    actions: {
+        actionLogout: bindActionCreators(logout, payload)
+    }
+});
+
+export default connect(mapStateToProps, mapActionsToProps)(Header);

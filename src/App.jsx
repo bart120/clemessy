@@ -3,10 +3,12 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import './App.css';
 import { Container } from 'reactstrap';
-import Header from './core/components/layout/Header';
 import Footer from './core/components/layout/Footer';
 import Routes from './core/conf/Routes';
 import SuspenseSpinner from './core/components/suspense/SuspenseSpinner';
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
+import Header from './core/components/layout/Header';
 
 
 class App extends React.Component {
@@ -15,14 +17,16 @@ class App extends React.Component {
     return (
 
       <Container>
-        <Router>
-          <Header />
-          <Suspense fallback={SuspenseSpinner}>
-            <Routes />
-          </Suspense>
-        </Router>
-        <Footer />
-      </Container>
+        <Provider store={store}>
+          <Router>
+            <Header />
+            <Suspense fallback={(<SuspenseSpinner />)}>
+              <Routes />
+            </Suspense>
+          </Router>
+          <Footer />
+        </Provider>
+      </Container >
 
     );
   }
