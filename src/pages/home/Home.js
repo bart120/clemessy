@@ -4,7 +4,7 @@ class Home extends React.Component {
     state = {}
     render() {
         return (
-            <div>Login</div>
+            <div>Home</div>
         );
     }
 }

@@ -4,7 +4,7 @@ class VariableTypesList extends React.Component {
     state = {}
     render() {
         return (
-            <div>Login</div>
+            <div>List des types de variable</div>
         );
     }
 }

@@ -1,12 +1,13 @@
 import React from 'react';
+import { MyNavLink } from '../link/NavLink';
 import {
     Collapse,
     Navbar,
     NavbarToggler,
     NavbarBrand,
     Nav,
-    NavItem,
     NavLink,
+    NavItem,
     UncontrolledDropdown,
     DropdownToggle,
     DropdownMenu,
@@ -23,10 +24,10 @@ class Header extends React.Component {
                 <Collapse navbar>
                     <Nav className="ml-auto" navbar>
                         <NavItem>
-                            <NavLink href="/components/">Components</NavLink>
+                            <MyNavLink to='/variabletypes/list'>Types de variable</MyNavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+                            <MyNavLink to="https://github.com/reactstrap/reactstrap">GitHub</MyNavLink>
                         </NavItem>
                         <UncontrolledDropdown nav inNavbar>
                             <DropdownToggle nav caret>

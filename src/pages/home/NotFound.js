@@ -4,7 +4,7 @@ class NotFound extends React.Component {
     state = {}
     render() {
         return (
-            <div>Login</div>
+            <div>Not found</div>
         );
     }
 }
