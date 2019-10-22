@@ -1,5 +1,6 @@
 import React from 'react';
 import { MyNavLink } from '../link/NavLink';
+import { Link } from 'react-router-dom';
 import {
     Collapse,
     Navbar,
@@ -19,7 +20,7 @@ class Header extends React.Component {
     render() {
         return (
             <Navbar color="dark" dark expand="md">
-                <NavbarBrand href="/">Clemessy</NavbarBrand>
+                <Link to="/" className="navbar-brand">Clemessy</Link>
                 <NavbarToggler />
                 <Collapse navbar>
                     <Nav className="ml-auto" navbar>
@@ -27,7 +28,7 @@ class Header extends React.Component {
                             <MyNavLink to='/variabletypes/list'>Types de variable</MyNavLink>
                         </NavItem>
                         <NavItem>
-                            <MyNavLink to="https://github.com/reactstrap/reactstrap">GitHub</MyNavLink>
+                            <MyNavLink to="/login">Se connecter</MyNavLink>
                         </NavItem>
                         <UncontrolledDropdown nav inNavbar>
                             <DropdownToggle nav caret>

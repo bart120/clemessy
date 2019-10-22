@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import './App.css';
@@ -6,6 +6,7 @@ import { Container } from 'reactstrap';
 import Header from './core/components/layout/Header';
 import Footer from './core/components/layout/Footer';
 import Routes from './core/conf/Routes';
+import SuspenseSpinner from './core/components/suspense/SuspenseSpinner';
 
 
 class App extends React.Component {
@@ -16,8 +17,9 @@ class App extends React.Component {
       <Container>
         <Router>
           <Header />
-          <Routes />
-
+          <Suspense fallback={SuspenseSpinner}>
+            <Routes />
+          </Suspense>
         </Router>
         <Footer />
       </Container>
