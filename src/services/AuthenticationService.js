@@ -15,7 +15,7 @@ export class AuthenticationService extends BaseService {
         return this.post(URL, user).then((data) => {
             const decoded = jwtDecode(data.id_token);
 
-            return Promise.resolve({ name: decoded.sub });
+            return Promise.resolve({ name: decoded.sub, token: data.id_token, roles: decoded.auth.split(',') });
         });
 
     }

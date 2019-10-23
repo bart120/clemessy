@@ -13,11 +13,14 @@ import {
 import { connect } from 'react-redux';
 import { logout } from '../../../redux/actions/authentication-actions';
 import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router';
 
 class Header extends React.Component {
 
     onLogout = () => {
         this.props.actions.actionLogout();
+        //console.log('props', this.props);
+        this.props.history.push('/login');
     }
 
     render() {
@@ -29,6 +32,9 @@ class Header extends React.Component {
                     <Nav className="ml-auto" navbar>
                         <NavItem>
                             <MyNavLink to='/variabletypes/list'>Types de variable</MyNavLink>
+                        </NavItem>
+                        <NavItem>
+                            <MyNavLink to='/variabletypes/add'>Ajouter</MyNavLink>
                         </NavItem>
                         {this.props.isConnected ? (
                             <>
@@ -61,4 +67,4 @@ const mapActionsToProps = (payload) => ({
     }
 });
 
-export default connect(mapStateToProps, mapActionsToProps)(Header);
+export default connect(mapStateToProps, mapActionsToProps)(withRouter(Header));
