@@ -6,6 +6,7 @@ import {
     Navbar,
     NavbarToggler,
     Button,
+    ButtonGroup,
     Nav,
     NavLink,
     NavItem
@@ -15,6 +16,7 @@ import { logout } from '../../../redux/actions/authentication-actions';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router';
 import { withTranslation } from 'react-i18next';
+import i18next from 'i18next';
 
 class Header extends React.Component {
 
@@ -22,6 +24,10 @@ class Header extends React.Component {
         this.props.actions.actionLogout();
         //console.log('props', this.props);
         this.props.history.push('/login');
+    }
+
+    onChangeLanguage(lang) {
+        i18next.changeLanguage(lang);
     }
 
     render() {
@@ -50,6 +56,12 @@ class Header extends React.Component {
                                 <NavItem>
                                     <MyNavLink to="/login">Se connecter</MyNavLink>
                                 </NavItem>)}
+                        <NavItem>
+                            <ButtonGroup>
+                                <Button onClick={() => this.onChangeLanguage('fr')}>FR</Button>
+                                <Button onClick={() => this.onChangeLanguage('en')}>EN</Button>
+                            </ButtonGroup>
+                        </NavItem>
 
                     </Nav>
                 </Collapse >

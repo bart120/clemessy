@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import Home from '../../pages/home/Home';
-import { VariableList, VariableAdd } from '../../pages/variable-types';
+import { VariableList, VariableAdd, VariableTypesDetail } from '../../pages/variable-types';
 import PrivateRoute from '../components/route/PrivateRoute';
 
 
@@ -14,6 +14,7 @@ class Routes extends React.Component {
             <>
                 <Route path='/' exact component={Home} />
                 <Route path='/variabletypes/list' exact component={VariableList} />
+                <Route path='/variabletypes/detail/:id' exact component={VariableTypesDetail} />
                 <PrivateRoute path='/variabletypes/add' exact component={VariableAdd} roles={['ROLE_ADMIN']} />
                 <Route path='/login' exact component={Login} />
             </>
