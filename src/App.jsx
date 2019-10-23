@@ -9,9 +9,26 @@ import SuspenseSpinner from './core/components/suspense/SuspenseSpinner';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import Header from './core/components/layout/Header';
+import i18next from 'i18next';
+import './core/conf/translations';
 
 
 class App extends React.Component {
+
+  componentDidMount() {
+    this.languageSelector();
+  }
+
+  languageSelector() {
+    const browserLanguage = navigator.language || navigator.userLanguage;
+    if (!localStorage.getItem('language')) {
+      localStorage.setItem('language', i18next.language);
+    } else {
+      const currentLanguage = localStorage.getItem('language');
+      console.log('language', currentLanguage);
+      i18next.changeLanguage(currentLanguage);
+    }
+  }
 
   render() {
     return (

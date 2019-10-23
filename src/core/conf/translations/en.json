@@ -1,0 +1,15 @@
+{
+    "translation": {
+        "header": {
+            "hello": "Hello",
+            "logout": "Logout",
+            "add": "Add",
+            "variable_types": "Variable types"
+        },
+        "login": {
+            "email": "Email",
+            "password": "Password",
+            "email_placeholder": "Your email"
+        }
+    }
+}

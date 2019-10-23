@@ -14,6 +14,7 @@ import { connect } from 'react-redux';
 import { logout } from '../../../redux/actions/authentication-actions';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router';
+import { withTranslation } from 'react-i18next';
 
 class Header extends React.Component {
 
@@ -24,6 +25,7 @@ class Header extends React.Component {
     }
 
     render() {
+        const { t } = this.props;
         return (
             <Navbar color="dark" dark expand="md">
                 <Link to="/" className="navbar-brand">Clemessy</Link>
@@ -31,17 +33,17 @@ class Header extends React.Component {
                 <Collapse navbar>
                     <Nav className="ml-auto" navbar>
                         <NavItem>
-                            <MyNavLink to='/variabletypes/list'>Types de variable</MyNavLink>
+                            <MyNavLink to='/variabletypes/list'>{t('header.variable_types')}</MyNavLink>
                         </NavItem>
                         <NavItem>
-                            <MyNavLink to='/variabletypes/add'>Ajouter</MyNavLink>
+                            <MyNavLink to='/variabletypes/add'>{t('header.add')}</MyNavLink>
                         </NavItem>
                         {this.props.isConnected ? (
                             <>
                                 <NavItem>
-                                    <NavLink>Bonjour {this.props.user.name}</NavLink>
+                                    <NavLink>{`${t('header.hello')} ${this.props.user.name}`}</NavLink>
                                 </NavItem><NavItem>
-                                    <Button onClick={this.onLogout}>Se déconnecter</Button>
+                                    <Button onClick={this.onLogout}>{t('header.logout')}</Button>
                                 </NavItem>
                             </>
                         ) : (
@@ -67,4 +69,6 @@ const mapActionsToProps = (payload) => ({
     }
 });
 
-export default connect(mapStateToProps, mapActionsToProps)(withRouter(Header));
+const Head = withTranslation()(withRouter(Header));
+
+export default connect(mapStateToProps, mapActionsToProps)(Head);

@@ -16,7 +16,11 @@ class Login extends React.Component {
         this.serv.authenticate(obj).then((user) => {
             //alert(`Bonjour ${user.name}`);
             this.props.actions.actionLogon(user);
-            this.props.history.push('/');
+            if (this.props.history.action === 'REPLACE') {
+                this.props.history.push(this.props.history.location.state.from);
+            } else {
+                this.props.history.push('/');
+            }
         });
 
     }

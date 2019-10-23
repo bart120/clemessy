@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -26,7 +26,7 @@ class PrivateRoute extends Component {
                 return (
                     this.props.isConnected && this.checkRoles() ?
                         (<Component />) :
-                        (<Redirect to={{ pathname: '/login' }} />)
+                        (<Redirect to={{ pathname: '/login', state: { from: this.props.history.location.pathname } }} />)
                 )
             }} />
         );
@@ -38,4 +38,4 @@ const mapStateToProps = (stateStore) => ({
     user: stateStore.user
 });
 
-export default connect(mapStateToProps)(PrivateRoute);
+export default connect(mapStateToProps)(withRouter(PrivateRoute));
